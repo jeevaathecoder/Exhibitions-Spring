@@ -1,0 +1,43 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" th:href="@{/css/getHalls.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+
+<div class="exhibitions_container">
+
+    <table align="center" class="exhibitions" cellspacing="9">
+      <th:block th:each="hall : ${halls}">
+
+        <tr>
+          <td>
+            <b th:text="${hall.name}">Hall's name</b>
+            <br>
+            <th:block th:text="${hall.description}">Hall's description</th:block>
+            <br>
+          </td>
+        </tr>
+
+
+      </th:block>
+
+    </table>
+  <div th:if="${pageNumbers != null}" class="pagination">
+    <div class="pagination-inner">
+      <th:block  th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/getHalls(pageNum=${pageNumber})}"
+           th:text="${pageNumber}"
+           th:class="${pageNumber == currentPage} ? active">
+          Page's number
+        </a>
+      </th:block>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

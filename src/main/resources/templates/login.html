@@ -1,0 +1,22 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Log in</title>
+    <link rel="stylesheet" th:href="@{/css/registration.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+<h1 th:text="#{please-log-in}">Please log in</h1>
+<hr>
+<form th:method="POST" th:action="@{/login}">
+    <div class="registration_container">
+        <label for="username" th:text="#{username}">Username</label>
+        <input type="text" id="username" th:name="username" name="username" placeholder="Enter your username">
+        <label for="password" th:text="#{password}">Password</label>
+        <input type="password" id="password" th:name="password" name="password" placeholder="Enter your password">
+        <button type="submit" th:text="#{log-in}">Log in</button>
+    </div>
+</form>
+
+</body>
+</html>

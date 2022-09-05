@@ -1,0 +1,63 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Add exhibition</title>
+    <link rel="stylesheet" th:href="@{/css/addExhibition.css}">
+</head>
+<body>
+
+<div th:insert="fragments/navbar.html"></div>
+
+<h1 th:text="#{add-exhibition}">Add exhibition</h1>
+<hr>
+<form th:method="POST" th:action="@{/addExhibition}"  th:object="${exhibition}">
+    <div class="add_exhibition_container">
+
+        <label for="theme" th:text="#{theme}"></label>
+        <input type="text" th:field="*{theme}" id="theme" placeholder="Enter theme">
+        <div style="color:red" th:each="error: ${#fields.errors('theme')}" th:text="${error}">
+            Validation error
+        </div>
+
+        <label for="description" th:text="#{description}"></label>
+        <input type="text" th:field="*{description}" id="description" placeholder="Enter description">
+        <div style="color:red" th:each="error: ${#fields.errors('description')}" th:text="${error}">
+            Validation error
+        </div>
+
+
+        <label for="startDate" th:text="#{start-date}"></label>
+        <input type="date" th:field="*{startDate}" id="startDate" placeholder="Enter start date">
+        <div style="color:red" th:each="error: ${#fields.errors('startDate')}" th:text="${error}">
+            Validation error
+        </div>
+
+        <label for="endDate" th:text="#{end-date}"></label>
+        <input type="date" th:field="*{endDate}" id="endDate" placeholder="Enter end date">
+        <div style="color:red" th:each="error: ${#fields.errors('endDate')}" th:text="${error}">
+            Validation error
+        </div>
+
+
+        <label for="price" th:text="#{price}"></label>
+        <input type="number" th:field="*{price}" id="price" placeholder="Enter the price">
+        <div style="color:red" th:each="error: ${#fields.errors('price')}" th:text="${error}">
+            Validation error
+        </div>
+
+
+        <label for="selector" th:text="#{add-halls}"></label><br>
+        <select id="selector" name="chosenHalls" multiple="multiple">
+            <th:block th:each="hall: ${halls}">
+                <option th:value="${hall.id}" th:text="${hall.name}">Hall name</option>
+                <br>
+            </th:block>
+        </select><br>
+
+        <button type="submit" th:text="#{create-exhibition}"></button>
+    </div>
+</form>
+
+
+</body>
+</html>

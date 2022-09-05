@@ -1,0 +1,31 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Add hall</title>
+    <link rel="stylesheet" th:href="@{/css/addHall.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+
+<h1 th:text="#{add-hall}">Add hall</h1>
+<hr>
+<form th:method="POST" th:action="@{/addHall}"  th:object="${hall}">
+    <div class="add_hall_container">
+        <label for="name" th:text="#{name}">Name</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Enter name">
+        <div style="color:red" th:each="error: ${#fields.errors('name')}" th:text="${error}">
+            Validation error
+        </div>
+
+        <label for="description" th:text="#{description}">Description</label>
+        <input type="text" th:field="*{description}" id="description" placeholder="Enter description">
+        <div style="color:red" th:each="error: ${#fields.errors('description')}" th:text="${error}">
+            Validation error
+        </div>
+        <button type="submit" th:text="#{create-hall}">Create hall</button>
+    </div>
+</form>
+
+
+</body>
+</html>

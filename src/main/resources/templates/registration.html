@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <link rel="stylesheet" th:href="@{/css/registration.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+<h1 th:text="#{registration}">Registration</h1>
+<hr>
+<form th:action="@{/registration}" th:method="POST" th:object="${user}">
+    <div class="registration_container">
+        <label for="username" th:text="#{username}">Username</label>
+        <input type="text" th:field="*{username}" id="username" placeholder="Enter your username">
+        <div style="color:red" th:each="error: ${#fields.errors('username')}" th:text="${error}">
+            Validation error
+        </div>
+        <label for="password" th:text="#{password}">Password</label>
+        <input type="password" th:field="*{password}" id="password" placeholder="Enter your password">
+        <div style="color:red" th:each="error: ${#fields.errors('password')}" th:text="${error}">
+            Validation error
+        </div>
+        <button type="submit" th:text="#{register}">Register</button>
+    </div>
+</form>
+
+</body>
+</html>

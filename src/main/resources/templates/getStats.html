@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/getStats.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+
+<h1 th:text="#{exhibitions-statistics}">Exhibitions' statistics</h1>
+<hr>
+
+<table class="statistic">
+    <tr>
+        <th th:text="#{theme}">Theme</th>
+        <th th:text="#{dates-of-work}">Dates of work</th>
+        <th th:text="#{halls}">Halls</th>
+        <th th:text="#{ticket-price}">Ticket's price</th>
+        <th th:text="#{number-of-tickets-sold}">Number of tickets sold</th>
+    </tr>
+    <th:block th:each="stat: ${stats}">
+        <tr>
+            <td th:text="${stat.key.theme}">Theme</td>
+            <td>From <th:block th:text="${stat.key.startDate}"> Start date </th:block>
+                To <th:block th:text="${stat.key.endDate}"> End date </th:block></td>
+            <td>
+                <th:block th:each="hall: ${stat.key.halls}">
+                    <th:block th:text="${hall.name}">Hall's name</th:block>
+                </th:block>
+            </td>
+            <td th:text="${stat.key.price}"> Price </td>
+            <td th:text="${stat.value}">Number of tickets sold</td>
+            <td>
+                <a th:href="@{/getStats/{theme}(theme = ${stat.key.theme})}"
+                   th:class="active" th:text="#{get-detailed-stats}">
+                    Get detailed stats
+                </a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

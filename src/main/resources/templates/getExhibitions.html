@@ -1,0 +1,65 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/getExhibitions.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+
+<div class="exhibitions_container" th:if="exhibitions != null">
+
+        <table align="center" class="exhibitions" cellspacing="9">
+            <th:block th:each="exhibition : ${exhibitions}">
+
+                <tr>
+                    <td><b th:text="${exhibition.theme}">Exhibition's theme</b>
+                        <br>
+                            <th:block th:text="${exhibition.description}">Exhibition's description</th:block>
+                        <br>
+                        <br><b th:text="#{time-from}">Time: From </b>
+                        <th:block th:text="${exhibition.startDate}">Exhibition's start date</th:block>
+                        <b th:text="#{to}">to</b>
+                        <th:block th:text="${exhibition.endDate}">Exhibition's end date</th:block>
+                        <br>
+                        <b th:text="#{halls}">Halls:</b>
+                        <th:block th:each="hall : ${exhibition.halls}">
+                            <th:block th:text="${hall.name}">Hall's name</th:block> <br>
+                        </th:block>
+
+                        <b th:text="#{price}">Price:</b> <th:block th:text="${exhibition.price}">Exhibition's price</th:block> UAH
+                        <br><br>
+
+                        <th:block th:text="#{already-bought}">You have already bought</th:block> <th:block th:text="${exhService.getNumberOfTicketsBoughtForUserAtExhibition(user, exhibition)}">Tickets count</th:block> <th:block th:text="#{tickets-at}"> tickets at this exhibition</th:block>
+
+                        <form th:action="@{/getExhibitions}" th:method="POST">
+                            <input type="hidden" name="exhibitionId"  th:value="${exhibition.id}">
+                            <button type="submit" th:text="#{buy-ticket}">Buy ticket</button>
+                        </form>
+
+                        <div sec:authorize="hasAuthority('ADMIN')">
+                            <form th:action="@{/getExhibitions}" method="POST">
+                                <input type="hidden" name="canceledExhibitionId"  th:value="${exhibition.id}">
+                                <button type="submit" th:text="#{cancel-exhibition}">Cancel exhibition</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+
+            </th:block>
+
+        </table>
+    <div th:if="${pageNumbers != null}" class="pagination">
+        <div class="pagination-inner">
+            <th:block  th:each="pageNumber : ${pageNumbers}">
+                <a th:href="@{/getExhibitions(pageNum=${pageNumber},sortType=${sortType})}"
+                   th:text="${pageNumber}"
+                   th:class="${pageNumber == currentPage} ? active">
+                    Page's number
+                </a>
+            </th:block>
+        </div>
+    </div>
+</div>
+</body>
+</html>

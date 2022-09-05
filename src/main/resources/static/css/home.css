@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.topnav .logged_user {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 270px;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #e9e9e9;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #3d5d8f;
+    color: white;
+}
+
+.change-language {
+    float: right;
+}
+
+.topnav .login-container {
+    float: right;
+}
+
+.topnav input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 120px;
+}
+
+.topnav input[type=password] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 120px;
+}
+
+.topnav .login-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background-color: #555;
+    color: white;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav .login-container button:hover {
+    background-color: #3d5d8f;
+}
+
+.exhibitions_container button {
+    background-color: #3d5d8f;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.exhibitions_container {
+    padding: 50px 20%;
+}
+
+
+.exhibitions td {
+    font-size: 13pt;
+    padding: 5px 10px;
+
+    border: 10px groove;
+    border-color: #404040 #919191 #404040 #919191;
+}
+
+.exhibitions table {
+    caption-side: top;
+
+}
+
+
+.pagination {
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.pagination-inner {
+    position: absolute;
+    padding-left: 50%;
+}
+
+.pagination a {
+    background-color: #d9d9d9;
+    float: left;
+    margin-right: 5px;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.pagination a:hover {
+    background-color: #b0b0b0;
+    color: black;
+}
+
+.pagination a.active {
+    background-color: green;
+    color: white;
+}

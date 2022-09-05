@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+<div class="exhibitions_container">
+
+    <h1 th:text="#{observe-themes}">Theme</h1>
+
+    <form th:action="@{/getExhibitions}" th:method="GET">
+        <input name="pageNum" type="hidden" value="1">
+        <input name="sortType" type="hidden" value="default">
+        <button type="submit" th:text="#{get-exhibitions-by-default}">By default</button>
+    </form>
+
+    <form th:action="@{/getExhibitions}" th:method="GET">
+        <input name="pageNum" type="hidden" value="1">
+        <input name="sortType" type="hidden" value="theme">
+        <button type="submit" th:text="#{get-exhibitions-by-theme}">By theme</button>
+    </form>
+
+    <form th:action="@{/getExhibitions}" th:method="GET">
+        <input name="pageNum" type="hidden" value="1">
+        <input name="sortType" type="hidden" value="price">
+        <button type="submit" th:text="#{get-exhibitions-by-price}">By price</button>
+    </form>
+
+    <form th:action="@{/getHalls}" th:method="GET">
+        <input name="pageNum" type="hidden" value="1">
+        <button type="submit" th:text="#{get-halls}">Get halls</button>
+    </form>
+
+</div>
+
+</body>
+</html>

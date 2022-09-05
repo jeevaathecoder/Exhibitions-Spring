@@ -1,0 +1,27 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/getDetailedStats.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+
+<h1 th:text="#{detailed-statistics}"> Detailed statistics <th:block th:text="${exhibition.theme}"> Theme </th:block></h1>
+<hr>
+
+<table class="detailed-statistic">
+    <tr>
+        <th th:text="#{username}">Username</th>
+        <th th:text="#{number-of-tickets-bought}">Number of tickets bought</th>
+    </tr>
+    <th:block th:each="stat: ${stats}">
+        <tr>
+            <td th:text="${stat.key}"> Username </td>
+            <td th:text="${stat.value}"> Number of tickets bought </td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>
