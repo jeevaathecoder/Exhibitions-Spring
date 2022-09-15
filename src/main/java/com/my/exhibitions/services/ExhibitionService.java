@@ -36,9 +36,9 @@ public class ExhibitionService {
         this.userService = userService;
     }
 
-    public void save(Exhibition exhibition, List<String> halls) {
+    public void save(Exhibition exhibition, List<String> hallsIds) {
         LOGGER.info("Saving exhibition " + exhibition.getTheme());
-        exhibition.setHalls(halls.stream().map(Long::parseLong).map(hallService::findById).collect(Collectors.toSet()));
+        exhibition.setHalls(hallsIds.stream().map(Long::parseLong).map(hallService::findById).collect(Collectors.toSet()));
         save(exhibition);
     }
 
